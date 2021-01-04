@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\RoomController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -23,5 +24,6 @@ Route::post('login', [UserController::class, 'login']);
 Route::post('register', [UserController::class, 'register']);
 
 Route::group(['middleware' => ['auth:api']], function () {
+    Route::get('room-list', [RoomController::class, 'index']);
     Route::post('logout', [UserController::class, 'logout']);
 });

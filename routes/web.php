@@ -44,6 +44,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/wellcome', [DashboardController::class, 'index'])->name('index.wellcome');
         Route::get('/list-room', [RoomController::class, 'indexRoom'])->name('index.room');
         Route::get('/list-room/add', [RoomController::class, 'addRoom'])->name('add.room');
+        Route::post('/list-room/add', [RoomController::class, 'storeRoom']);
+        Route::delete('/list-room/delete/{id}', [RoomController::class, 'destroyRoom'])->name('delete.room');
         Route::get('/list-booked', [RoomController::class, 'indexList'])->name('index.list');
     });
 });

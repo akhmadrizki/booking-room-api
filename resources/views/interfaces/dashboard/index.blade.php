@@ -21,7 +21,7 @@
     <div class="col-12 mb-4">
       <div class="hero bg-primary text-white">
         <div class="hero-inner">
-          <h2>Selamat Datang, Ujang!</h2>
+          <h2>Selamat Datang, {{ Auth::user()->name }}!</h2>
           <p class="lead">
             Mie tek-tek kenangan Campur bayam dan kemangi <br>
             Yuk cek apakah ada Ruangan yang dipinjam hari ini

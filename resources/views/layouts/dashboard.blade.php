@@ -38,6 +38,19 @@
     .button-beta:hover {
       background-color: #18bcc5 !important;
     }
+
+    .sidebar-menu li.active a {
+      color: #032038 !important;
+    }
+
+    .sidebar-menu li.active a::before {
+      background-color: #032038 !important;
+    }
+
+    body.sidebar-mini .main-sidebar .sidebar-menu>li.active>a {
+      background-color: #032038 !important;
+      color: #fff !important;
+    }
   </style>
 
   @yield('additional-css')
@@ -71,32 +84,32 @@
       <div class="main-sidebar sidebar-style-2">
         <aside id="sidebar-wrapper">
           <div class="sidebar-brand">
-            <a href="index.html">Sibook</a>
+            <a href="/">Sibook</a>
           </div>
           <div class="sidebar-brand sidebar-brand-sm">
-            <a href="index.html">
+            <a href="/">
               <img src="{{ asset('img/icon.png') }}" alt="primakara-logo" title="sibook">
             </a>
           </div>
           <ul class="sidebar-menu">
-            <li class=active>
-              <a class="nav-link" href="blank.html">
+            <li class="{{ Request::route()->getName() == 'index.wellcome' ? ' active' : '' }}">
+              <a class="nav-link" href="{{route('index.wellcome')}}">
                 <i class="fas fa-fire"></i>
                 <span>Dashboard</span>
               </a>
             </li>
 
-            <li>
-              <a class="nav-link" href="blank.html">
+            <li class="{{Request::route()->getName() == 'index.room' ? ' active' : '' }}">
+              <a class="nav-link" href="{{route('index.room')}}">
                 <i class="fas fa-list-ol"></i>
-                <span>List Rooms</span>
+                <span>List Ruangan</span>
               </a>
             </li>
 
-            <li>
-              <a class="nav-link" href="blank.html">
+            <li class="{{Request::route()->getName() == 'index.list' ? ' active' : '' }}">
+              <a class="nav-link" href="{{route('index.list')}}">
                 <i class="fas fa-file-contract"></i>
-                <span>List Booked</span>
+                <span>List Peminjaman</span>
               </a>
             </li>
           </ul>

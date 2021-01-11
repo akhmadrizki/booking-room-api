@@ -7,8 +7,6 @@
 - [Setup](#setup)
 - [Running the app](#running-the-app)
 - [Database setup](#database-setup)
-- [Use Docker Compose](#use-docker-compose)
-- [Merge Request](#merge-request)
 
 ## Prerequisites
 
@@ -34,7 +32,17 @@ $ git remote add upstream https://github.com/akhmadrizki/booking-room-api.git
 ```sh
 $ composer install
 ```
-6. Setup database. Then konfigure in `.env` according to database settings. Example:
+
+
+
+## Running the app
+
+```sh
+$ php artisan serve
+```
+
+## Database setup
+
 ```sh
 ...
 DB_DATABASE=sibook
@@ -42,23 +50,21 @@ DB_USERNAME=root
 DB_PASSWORD=
 ...
 ```
-7. Run this command:
+
+- Run this command:
 ```sh
 $ php artisan key:generate
 $ composer dump-autoload
 $ php artisan migrate:fresh --seed
 $ php artisan storage:link
 ```
-8. For use Passport
+- For use Passport
 ```sh
 $ composer require laravel/passport
 $ php artisan migrate
 $ php artisan passport:install
 ```
-9. Run this code if you want run project:
-```sh
-$ php artisan serve
-```
+
 
 ### Following are the steps that must be taken in the contribution process
 1. Always pull upstream whenever you want to start developing

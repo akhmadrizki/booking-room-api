@@ -73,6 +73,8 @@ class RoomController extends Controller
         $room = Room::select('id', 'image_ruangan', 'nama_ruangan', 'kapasitas_ruangan', 'kapasitas_ruangan', 'proyektor', 'panggung', 'category_id')
             ->with(['peminjam' => function ($query) {
                 $query->select('id', 'room_id', 'tujuan', 'tgl_pinjam', 'tambahan', 'jam_pinjam', 'status', 'user_id')
+                    ->orderBy('created_at', 'asc')
+                    ->take(4)
                     ->with(['user' => function ($query) {
                         $query->select('id', 'name');
                     }]);

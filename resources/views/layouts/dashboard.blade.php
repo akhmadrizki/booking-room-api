@@ -111,7 +111,6 @@
                 <span>List Ruangan</span>
               </a>
             </li>
-            @endif
 
             <li class="{{Request::route()->getName() == 'index.category' ? ' active' : '' }}">
               <a class="nav-link" href="{{route('index.category')}}">
@@ -119,6 +118,7 @@
                 <span>List Categories</span>
               </a>
             </li>
+            @endif
 
             <li class="{{Request::route()->getName() == 'index.list' ? ' active' : '' }}">
               <a class="nav-link" href="{{route('index.list')}}">

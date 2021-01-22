@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\CategoryRoom;
+use App\Models\Peminjam;
 use App\Models\Room;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Image;
 
@@ -103,7 +105,53 @@ class RoomController extends Controller
 
     public function indexList()
     {
-        return view('interfaces.dashboard.listBooked');
-        return redirect()->route('index.room')->with('success', 'Ruangan berhasil dihapus');
+        $user = User::all();
+        $peminjam = Peminjam::latest()->get();
+        $rooms = Room::all();
+        return view('interfaces.dashboard.listBooked')
+            ->withUser($user)
+            ->withPeminjam($peminjam)
+            ->withRooms($rooms);
+        // return redirect()->route('index.room')->with('success', 'Ruangan berhasil dihapus');
+    }
+
+    public function editPeminjam($id)
+    {
+        $peminjam = Peminjam::find($id);
+        $rooms = Room::all();
+        $user = User::all();
+
+        return view('interfaces.dashboard.editBooked')
+            ->withPeminjam($peminjam)
+            ->withRooms($rooms)
+            ->withUser($user);
+    }
+
+    public function updatePeminjam(Request $request, $id)
+    {
+        $peminjam = Peminjam::find($id);
+        $getUser  = User::where('id', $peminjam->user_id)->first();
+        $getRoom  = Room::where('id', $peminjam->room_id)->first();
+
+        $field = [
+            'status' => $request->status,
+        ];
+        $peminjam->update($field);
+
+        // notification
+        $channelName = 'notification';
+        $recipient   = $getUser->notification_token;
+        $expo = \ExponentPhpSDK\Expo::normalSetup();
+        $expo->subscribe($channelName, $recipient);
+
+        // Build the notification data
+        if ($request->status == 'pending') {
+            $notification = ['body' => 'Hey!' . $getRoom->nama_ruangan . 'yang kamu mau pinjam sedang ditinjau, tunggu notifikasi selanjutnya'];
+        }
+        $notification = ['body' => 'Selamat' . $getRoom->nama_ruangan . 'yang kamu mau pinjam sudah di setujui'];
+        // Notify an interest with a notification
+        $expo->notify([$channelName], $notification);
+
+        return redirect()->route('index.list')->with('success', 'Berhasil update status');
     }
 }

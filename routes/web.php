@@ -53,7 +53,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::delete('/list-room/delete/{id}', [RoomController::class, 'destroyRoom'])->name('delete.room');
         // End Route Room
 
-        Route::get('/list-booked', [RoomController::class, 'indexList'])->name('index.list');
+        Route::get('/list-peminjam', [RoomController::class, 'indexList'])->name('index.list');
+        Route::get('/list-peminjam/edit/{id}', [RoomController::class, 'editPeminjam'])->name('edit.list');
+        Route::post('/list-peminjam/update/{id}', [RoomController::class, 'updatePeminjam'])->name('update.list');
 
         Route::get('/list-category', [CategoryController::class, 'index'])->name('index.category');
         Route::post('/list-category/store', [CategoryController::class, 'store'])->name('add.category');

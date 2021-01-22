@@ -82,7 +82,7 @@
           </div>
           <div class="card-footer text-left">
             <button class="button-add btn-lg btn-success">Update</button>
-            <a href="{{ route('index.room') }}" class="button-add btn-lg btn-warning">Batal</a>
+            <a href="{{ URL::previous() }}" class="button-add btn-lg btn-warning">Batal</a>
           </div>
         </form>
       </div>

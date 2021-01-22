@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\CategoryRoom;
 use App\Models\Room;
 use Illuminate\Http\Request;
 use Image;
@@ -23,7 +24,8 @@ class RoomController extends Controller
 
     public function addRoom()
     {
-        return view('interfaces.dashboard.addRoom');
+        $categories = CategoryRoom::all();
+        return view('interfaces.dashboard.addRoom')->withCategories($categories);
     }
 
     public function storeRoom(Request $request)
@@ -38,6 +40,8 @@ class RoomController extends Controller
             'kapasitas_ruangan' => $request->kapasitas_ruangan,
             'proyektor'         => $request->proyektor,
             'panggung'          => $request->panggung,
+            'status_ruangan'    => $request->status_ruangan,
+            'category_id'       => $request->category_id,
         ];
 
         if ($request->hasFile('image_ruangan')) {
@@ -55,7 +59,8 @@ class RoomController extends Controller
     public function editRoom($id)
     {
         $rooms = Room::find($id);
-        return view('interfaces.dashboard.editRoom')->withRooms($rooms);
+        $categories = CategoryRoom::all();
+        return view('interfaces.dashboard.editRoom')->withRooms($rooms)->withCategories($categories);
     }
 
     public function updateRoom(Request $request, $id)
@@ -72,6 +77,8 @@ class RoomController extends Controller
             'kapasitas_ruangan' => $request->kapasitas_ruangan,
             'proyektor'         => $request->proyektor,
             'panggung'          => $request->panggung,
+            'status_ruangan'    => $request->status_ruangan,
+            'category_id'       => $request->category_id,
         ];
 
         if ($request->hasFile('image_ruangan')) {

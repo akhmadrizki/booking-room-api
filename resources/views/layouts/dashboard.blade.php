@@ -113,6 +113,13 @@
             </li>
             @endif
 
+            <li class="{{Request::route()->getName() == 'index.category' ? ' active' : '' }}">
+              <a class="nav-link" href="{{route('index.category')}}">
+                <i class="fas fa-hashtag"></i>
+                <span>List Categories</span>
+              </a>
+            </li>
+
             <li class="{{Request::route()->getName() == 'index.list' ? ' active' : '' }}">
               <a class="nav-link" href="{{route('index.list')}}">
                 <i class="fas fa-file-contract"></i>

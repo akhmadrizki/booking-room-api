@@ -13,13 +13,14 @@ class UserController extends Controller
     public function login()
     {
         $credentials = [
-            'name'     => request('name'),
+            'nim'     => request('nim'),
             'password' => request('password')
         ];
 
         if (Auth::attempt($credentials)) {
             $api['token'] = Auth::user()->createToken('MyApp')->accessToken;
             $api['name']  = Auth::user()->name;
+            $api['nim']  = Auth::user()->nim;
             $api['role']  = Auth::user()->role;
             $api['id']    = Auth::user()->id;
 

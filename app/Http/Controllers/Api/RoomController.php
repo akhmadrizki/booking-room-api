@@ -8,12 +8,87 @@ use Illuminate\Http\Request;
 
 class RoomController extends Controller
 {
-    public function index()
+    public function indexMeeting()
     {
-        $rooms = Room::select('id', 'nama_ruangan', 'image_ruangan')
+        $rooms = Room::select('id', 'image_ruangan', 'nama_ruangan', 'kapasitas_ruangan', 'kapasitas_ruangan', 'proyektor', 'panggung', 'status_ruangan', 'category_id')
+            ->where('category_id', '=', '2')
             ->latest()
-            ->get();
+            ->get()
+            ->toArray();
 
-        return response()->json($rooms);
+        $results = array_map(
+            function ($element) {
+                $images = $element['image_ruangan'];
+                $element['image_ruangan'] = 'http://localhost:8000/img/' . $images;
+                return $element;
+            },
+            $rooms
+        );
+
+        return response()->json($results);
+    }
+
+    public function indexSeminar()
+    {
+        $rooms = Room::select('id', 'image_ruangan', 'nama_ruangan', 'kapasitas_ruangan', 'kapasitas_ruangan', 'proyektor', 'panggung', 'status_ruangan', 'category_id')
+            ->where('category_id', '=', '3')
+            ->latest()
+            ->get()
+            ->toArray();
+
+        $results = array_map(
+            function ($element) {
+                $images = $element['image_ruangan'];
+                $element['image_ruangan'] = 'http://localhost:8000/img/' . $images;
+                return $element;
+            },
+            $rooms
+        );
+
+        return response()->json($results);
+    }
+
+    public function indexWorkshop()
+    {
+        $rooms = Room::select('id', 'image_ruangan', 'nama_ruangan', 'kapasitas_ruangan', 'kapasitas_ruangan', 'proyektor', 'panggung', 'status_ruangan', 'category_id')
+            ->where('category_id', '=', '1')
+            ->latest()
+            ->get()
+            ->toArray();
+
+        $results = array_map(
+            function ($element) {
+                $images = $element['image_ruangan'];
+                $element['image_ruangan'] = 'http://localhost:8000/img/' . $images;
+                return $element;
+            },
+            $rooms
+        );
+
+        return response()->json($results);
+    }
+
+    public function roomDetail($id)
+    {
+        $room = Room::select('id', 'image_ruangan', 'nama_ruangan', 'kapasitas_ruangan', 'kapasitas_ruangan', 'proyektor', 'panggung', 'category_id')
+            ->with(['peminjam' => function ($query) {
+                $query->select('id', 'room_id', 'tujuan', 'tgl_pinjam', 'tambahan', 'jam_pinjam', 'status', 'user_id')
+                    ->with(['user' => function ($query) {
+                        $query->select('id', 'name');
+                    }]);
+            }])
+            ->where('id', $id)
+            ->get()
+            ->toArray();
+
+        $results = array_map(
+            function ($element) {
+                $images = $element['image_ruangan'];
+                $element['image_ruangan'] = 'http://localhost:8000/img/' . $images;
+                return $element;
+            },
+            $room
+        );
+        return response()->json($results);
     }
 }

@@ -40,6 +40,19 @@
                 <input type="text" class="form-control" name="nama_ruangan" required>
               </div>
             </div>
+            <div class="form-group">
+              <label>Kategori</label>
+              <select name="category_id" id="category_id" class="custom-select">
+                <option value="none" disabled selected>- Pilih Kategori -</option>
+                @foreach($categories as $category)
+                <option value="{{$category->id}}">{{$category->category}}</option>
+                @endforeach
+              </select>
+            </div>
+            <div class="form-group" style="display: none">
+              <label>Status</label>
+              <input type="text" name="status_ruangan" value="tersedia" class="form-control">
+            </div>
 
             <div class="section-title mt-0 section-color">Detail Ruangan</div>
 

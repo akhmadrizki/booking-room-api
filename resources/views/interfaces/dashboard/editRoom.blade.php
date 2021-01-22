@@ -41,6 +41,17 @@
               </div>
             </div>
 
+            <div class="form-group">
+              <label>Kategori</label>
+              <select name="category_id" id="category_id" class="custom-select">
+                <option value="none" disabled selected>- Pilih Kategori -</option>
+                @foreach($categories as $category)
+                <option value="{{$category->id}}" @if($category->category) selected @endif>{{$category->category}}
+                </option>
+                @endforeach
+              </select>
+            </div>
+
             <div class="section-title mt-0 section-color">Detail Ruangan</div>
 
             <div class="form-row">

@@ -44,4 +44,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // Relations
+    public function peminjam()
+    {
+        return $this->hasMany(Peminjam::class);
+    }
 }

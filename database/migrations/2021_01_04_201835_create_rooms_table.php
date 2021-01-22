@@ -20,6 +20,8 @@ class CreateRoomsTable extends Migration
             $table->char('kapasitas_ruangan', 10)->nullable()->default(null);
             $table->char('proyektor', 10)->nullable()->default(null);
             $table->char('panggung', 10)->nullable()->default(null);
+            $table->string('status_ruangan');
+            $table->unsignedInteger('category_id')->nullable()->default(null);
             $table->timestamps();
         });
     }

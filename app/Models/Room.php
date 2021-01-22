@@ -16,5 +16,18 @@ class Room extends Model
         'kapasitas_ruangan',
         'proyektor',
         'panggung',
+        'status_ruangan',
+        'category_id',
     ];
+
+    // Relations
+    public function categoryroom()
+    {
+        return $this->belongsTo(CategoryRoom::class, 'category_id');
+    }
+
+    public function peminjam()
+    {
+        return $this->hasMany(Peminjam::class);
+    }
 }

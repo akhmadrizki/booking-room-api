@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Dashboard\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\RoomController;
@@ -53,6 +54,9 @@ Route::group(['middleware' => 'auth'], function () {
         // End Route Room
 
         Route::get('/list-booked', [RoomController::class, 'indexList'])->name('index.list');
+
+        Route::get('/list-category', [CategoryController::class, 'index'])->name('index.category');
+        Route::post('/list-category/store', [CategoryController::class, 'store'])->name('add.category');
     });
 });
 

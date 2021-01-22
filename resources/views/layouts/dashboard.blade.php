@@ -104,12 +104,14 @@
               </a>
             </li>
 
+            @if (auth()->user()->role == 'admin')
             <li class="{{Request::route()->getName() == 'index.room' ? ' active' : '' }}">
               <a class="nav-link" href="{{route('index.room')}}">
                 <i class="fas fa-list-ol"></i>
                 <span>List Ruangan</span>
               </a>
             </li>
+            @endif
 
             <li class="{{Request::route()->getName() == 'index.list' ? ' active' : '' }}">
               <a class="nav-link" href="{{route('index.list')}}">
@@ -135,8 +137,8 @@
       </div>
       <footer class="main-footer">
         <div class="footer-left">
-          Copyright &copy; {{ date('Y') }} <div class="bullet"></div> Primakara Booking Room | By <a href="#">Akhmad
-            Rizki</a>
+          Copyright &copy; {{ date('Y') }} <div class="bullet"></div> Primakara Booking Room | By <a href="#">Calon
+            Sarjana 🎓</a>
         </div>
         <div class="footer-right">
 

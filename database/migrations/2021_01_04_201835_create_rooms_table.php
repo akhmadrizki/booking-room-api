@@ -17,6 +17,9 @@ class CreateRoomsTable extends Migration
             $table->id();
             $table->string('image_ruangan')->nullable();
             $table->string('nama_ruangan');
+            $table->char('kapasitas_ruangan', 10)->nullable()->default(null);
+            $table->char('proyektor', 10)->nullable()->default(null);
+            $table->char('panggung', 10)->nullable()->default(null);
             $table->timestamps();
         });
     }

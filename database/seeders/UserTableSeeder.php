@@ -15,7 +15,7 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        $fields = [
+        $admin = [
             'name'     => 'admin',
             'email'    => null,
             'username' => 'admin',
@@ -24,6 +24,17 @@ class UserTableSeeder extends Seeder
             'password' => Hash::make('admin123'),
         ];
 
-        User::create($fields);
+        User::create($admin);
+
+        $master = [
+            'name'     => 'master',
+            'email'    => null,
+            'username' => 'master',
+            'nim'      => null,
+            'role'     => 'master',
+            'password' => Hash::make('master123'),
+        ];
+
+        User::create($master);
     }
 }

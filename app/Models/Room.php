@@ -13,5 +13,8 @@ class Room extends Model
     protected $fillable = [
         'image_ruangan',
         'nama_ruangan',
+        'kapasitas_ruangan',
+        'proyektor',
+        'panggung',
     ];
 }

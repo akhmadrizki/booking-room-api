@@ -42,10 +42,16 @@ Route::prefix('/')->group(function () {
 Route::group(['middleware' => 'auth'], function () {
     Route::prefix('dashboard')->group(function () {
         Route::get('/wellcome', [DashboardController::class, 'index'])->name('index.wellcome');
+
+        // Route Room
         Route::get('/list-room', [RoomController::class, 'indexRoom'])->name('index.room');
         Route::get('/list-room/add', [RoomController::class, 'addRoom'])->name('add.room');
         Route::post('/list-room/add', [RoomController::class, 'storeRoom']);
+        Route::get('/list-room/edit/{id}', [RoomController::class, 'editRoom'])->name('edit.room');
+        Route::post('list-room/update/{id}', [RoomController::class, 'updateRoom'])->name('update.room');
         Route::delete('/list-room/delete/{id}', [RoomController::class, 'destroyRoom'])->name('delete.room');
+        // End Route Room
+
         Route::get('/list-booked', [RoomController::class, 'indexList'])->name('index.list');
     });
 });

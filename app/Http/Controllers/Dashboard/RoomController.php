@@ -33,18 +33,57 @@ class RoomController extends Controller
             'image_ruangan'  => 'mimes:jpg,png,jpeg|max:5000'
         ]);
 
-        $field = ['nama_ruangan' => $request->nama_ruangan];
+        $fields = [
+            'nama_ruangan'      => $request->nama_ruangan,
+            'kapasitas_ruangan' => $request->kapasitas_ruangan,
+            'proyektor'         => $request->proyektor,
+            'panggung'          => $request->panggung,
+        ];
 
         if ($request->hasFile('image_ruangan')) {
             $image = $request->file('image_ruangan');
             $filename = time() . '.' . $image->getClientOriginalExtension();
             $location = public_path('img/' . $filename);
             Image::make($image)->save($location);
-            $field['image_ruangan'] = $filename;
+            $fields['image_ruangan'] = $filename;
         }
 
-        Room::create($field);
+        Room::create($fields);
         return redirect()->route('index.room')->with('success', 'Ruangan berhasil ditambahkan');
+    }
+
+    public function editRoom($id)
+    {
+        $rooms = Room::find($id);
+        return view('interfaces.dashboard.editRoom')->withRooms($rooms);
+    }
+
+    public function updateRoom(Request $request, $id)
+    {
+        $rooms = Room::find($id);
+
+        // validate the data
+        $this->validate($request, [
+            'image_ruangan'  => 'mimes:jpg,png,jpeg|max:5000'
+        ]);
+
+        $fields = [
+            'nama_ruangan'      => $request->nama_ruangan,
+            'kapasitas_ruangan' => $request->kapasitas_ruangan,
+            'proyektor'         => $request->proyektor,
+            'panggung'          => $request->panggung,
+        ];
+
+        if ($request->hasFile('image_ruangan')) {
+            $image = $request->file('image_ruangan');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('img/' . $filename);
+            Image::make($image)->save($location);
+            $fields['image_ruangan'] = $filename;
+        }
+
+        $rooms->update($fields);
+        return redirect()->route('index.room')->with('success', 'Ruangan berhasil diupdate');
     }
 
     public function destroyRoom($id)

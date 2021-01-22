@@ -23,6 +23,7 @@ class User extends Authenticatable
         'nim',
         'role',
         'password',
+        'notification_token',
     ];
 
     /**

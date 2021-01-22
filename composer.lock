@@ -4,8 +4,54 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a59008bd5b07f10a8348ddaaf3695db5",
+    "content-hash": "348a7d536b2ee49537b8072585e3c557",
     "packages": [
+        {
+            "name": "alymosul/exponent-server-sdk-php",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Alymosul/exponent-server-sdk-php.git",
+                "reference": "e4e89b289ec37dc92e940d91d8f3eb33d7ffc2b2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Alymosul/exponent-server-sdk-php/zipball/e4e89b289ec37dc92e940d91d8f3eb33d7ffc2b2",
+                "reference": "e4e89b289ec37dc92e940d91d8f3eb33d7ffc2b2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ExponentPhpSDK\\": "lib"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Aly Suleiman",
+                    "email": "alymosul@gmail.com"
+                }
+            ],
+            "description": "Server-side library for working with Expo push notifications using PHP",
+            "keywords": [
+                "expo",
+                "exponent",
+                "notifications",
+                "push"
+            ],
+            "support": {
+                "issues": "https://github.com/Alymosul/exponent-server-sdk-php/issues",
+                "source": "https://github.com/Alymosul/exponent-server-sdk-php/tree/master"
+            },
+            "time": "2019-12-11T11:19:40+00:00"
+        },
         {
             "name": "asm89/stack-cors",
             "version": "v2.0.2",

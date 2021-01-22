@@ -31,11 +31,12 @@ class UserController extends Controller
 
     public function register(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $validator  = Validator::make($request->all(), [
             'name'     => 'required',
             'nim'      => 'required',
             'role'     => 'required',
             'password' => 'required',
+            'notification_token',
         ]);
 
         if ($validator->fails()) {
@@ -45,14 +46,23 @@ class UserController extends Controller
         $input             = $request->all();
         $input['password'] = bcrypt($input['password']);
 
-        $user = User::create($input);
-        $success['token'] = $user->createToken('MyApp')->accessToken;
-        $success['name']  = $user->name;
+        $cekUser = User::where('nim', $input['nim'])->first();
+
+        if (empty($cekUser)) {
+            $user = User::create($input);
+            $success['token'] = $user->createToken('MyApp')->accessToken;
+            $success['name']  = $user->name;
+
+            return response()->json([
+                'message'    => 'Sukses',
+                'statusCode' => 200
+            ], 200);
+        }
 
         return response()->json([
-            'message'    => 'Sukses',
-            'statusCode' => 200
-        ], 200);
+            'message'    => 'Your input value has been registered',
+            'statusCode' => 401
+        ], 401);
     }
 
     public function logout(Request $request)
@@ -62,5 +72,25 @@ class UserController extends Controller
             'message'    => 'Successfully logged out',
             'statusCode' => 200
         ], 200);
+    }
+
+    public function notifTest()
+    {
+        $channelName = 'notification';
+        $recipient = 'ExponentPushToken[ME-YIoEJRiwlmakjHtFMwH]';
+
+        // You can quickly bootup an expo instance
+        $expo = \ExponentPhpSDK\Expo::normalSetup();
+
+        // Subscribe the recipient to the server
+        $expo->subscribe($channelName, $recipient);
+
+        // Build the notification data
+        $notification = ['body' => 'Selamat Kamu Wisuda'];
+
+        // Notify an interest with a notification
+        $expo->notify([$channelName], $notification);
+
+        return response()->json($expo);
     }
 }

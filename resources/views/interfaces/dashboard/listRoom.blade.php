@@ -54,8 +54,8 @@
                   <td><img src="{{ asset('img/' . $room->image_ruangan) }}" width="80"></td>
                   <td>{{ $room->nama_ruangan }}</td>
                   <td>
-                    <a href="#" class="btn-sm btn-warning"><i class="far fa-edit"></i></a>
-                    {{-- <a href="#" class="btn-sm btn-danger"><i class="far fa-trash-alt"></i></a> --}}
+                    <a href="{{ route('edit.room', $room->id) }}" class="btn-sm btn-warning"><i
+                        class="far fa-edit"></i></a>
                     <button class="btn btn-sm btn-danger" data-toggle="modal"
                       data-target="#delete-modal{{ $room->id }}"><i class="far fa-trash-alt"></i></button>
                   </td>
@@ -98,8 +98,8 @@
         <h5 class="modal-title">Hapus Ruangan</h5>
       </div>
       <div class="modal-body">
-        <div>Apakah Anda yakin ingin menghapus <span class="font-weight-bold">{{ $room->nama_ruangan }}</span>
-          ini?
+        <div>Yakinkah dirimu menghapus <span class="font-weight-bold">{{ $room->nama_ruangan }}</span>
+          ini? 🥺
         </div>
       </div>
       <div class="modal-footer bg-whitesmoke">

@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Api\BookingController;
 use App\Http\Controllers\API\CategoryController;
+use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\RoomController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Http\Request;
@@ -27,10 +29,14 @@ Route::post('register', [UserController::class, 'register']);
 Route::get('notification', [UserController::class, 'notifTest']);
 
 Route::group(['middleware' => ['auth:api']], function () {
+    Route::get('profile', [ProfileController::class, 'index']);
+
     Route::get('room-list-meeting', [RoomController::class, 'indexMeeting']);
     Route::get('room-list-workshop', [RoomController::class, 'indexWorkshop']);
     Route::get('room-list-seminar', [RoomController::class, 'indexSeminar']);
     Route::get('room-detail/{id}', [RoomController::class, 'roomDetail']);
+
+    Route::post('booking', [BookingController::class, 'store']);
 
     Route::get('category-list', [CategoryController::class, 'index']);
     Route::post('logout', [UserController::class, 'logout']);

@@ -18,9 +18,9 @@ class CreatePeminjamsTable extends Migration
             $table->unsignedInteger('room_id');
             $table->unsignedInteger('user_id');
             $table->string('tujuan');
-            $table->date('tgl_pinjam');
+            $table->dateTime('tgl_pinjam');
+            $table->dateTime('tgl_selesai');
             $table->string('tambahan')->nullable()->default(null);
-            $table->string('jam_pinjam');
             $table->string('status');
             $table->timestamps();
         });

@@ -11,7 +11,7 @@ class RoomController extends Controller
     public function indexMeeting()
     {
         $rooms = Room::select('id', 'image_ruangan', 'nama_ruangan', 'kapasitas_ruangan', 'kapasitas_ruangan', 'proyektor', 'panggung', 'status_ruangan', 'category_id')
-            ->where('category_id', '=', '2')
+            ->where('category_id', '=', '3')
             ->latest()
             ->get()
             ->toArray();
@@ -31,7 +31,7 @@ class RoomController extends Controller
     public function indexSeminar()
     {
         $rooms = Room::select('id', 'image_ruangan', 'nama_ruangan', 'kapasitas_ruangan', 'kapasitas_ruangan', 'proyektor', 'panggung', 'status_ruangan', 'category_id')
-            ->where('category_id', '=', '3')
+            ->where('category_id', '=', '1')
             ->latest()
             ->get()
             ->toArray();
@@ -51,7 +51,7 @@ class RoomController extends Controller
     public function indexWorkshop()
     {
         $rooms = Room::select('id', 'image_ruangan', 'nama_ruangan', 'kapasitas_ruangan', 'kapasitas_ruangan', 'proyektor', 'panggung', 'status_ruangan', 'category_id')
-            ->where('category_id', '=', '1')
+            ->where('category_id', '=', '2')
             ->latest()
             ->get()
             ->toArray();
@@ -72,8 +72,8 @@ class RoomController extends Controller
     {
         $room = Room::select('id', 'image_ruangan', 'nama_ruangan', 'kapasitas_ruangan', 'kapasitas_ruangan', 'proyektor', 'panggung', 'category_id')
             ->with(['peminjam' => function ($query) {
-                $query->select('id', 'room_id', 'tujuan', 'tgl_pinjam', 'tambahan', 'jam_pinjam', 'status', 'user_id')
-                    ->orderBy('created_at', 'asc')
+                $query->select('id', 'room_id', 'tujuan', 'tgl_pinjam', 'tambahan', 'tgl_selesai', 'status', 'user_id')
+                    ->orderBy('tgl_pinjam', 'asc')
                     ->take(4)
                     ->with(['user' => function ($query) {
                         $query->select('id', 'name');

@@ -41,7 +41,7 @@
                   <th>Nama Ruangan</th>
                   <th>Nama Peminjam</th>
                   <th>Tanggal Pinjam</th>
-                  <th>Jam Pinjam</th>
+                  <th>Tanggal Selesai</th>
                   <th>Keperluan</th>
                   <th>Atribut</th>
                   <th>Status</th>
@@ -55,7 +55,7 @@
                   <td>{{$pinjam->room->nama_ruangan}}</td>
                   <td>{{$pinjam->user->name}}</td>
                   <td>{{$pinjam->tgl_pinjam}}</td>
-                  <td>{{$pinjam->jam_pinjam}}</td>
+                  <td>{{$pinjam->tgl_selesai}}</td>
                   <td>{{$pinjam->tujuan}}</td>
                   <td>{{$pinjam->tambahan}}</td>
                   <td>

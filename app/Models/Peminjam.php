@@ -15,8 +15,8 @@ class Peminjam extends Model
         'user_id',
         'tujuan',
         'tgl_pinjam',
+        'tgl_selesai',
         'tambahan',
-        'jam_pinjam',
         'status',
     ];
 

@@ -36,8 +36,8 @@
                     <div class="profile-widget-item-value">{{$peminjam->tgl_pinjam}}</div>
                   </div>
                   <div class="profile-widget-item">
-                    <div class="profile-widget-item-label">Jam Peminjaman</div>
-                    <div class="profile-widget-item-value">{{ $peminjam->jam_pinjam }}</div>
+                    <div class="profile-widget-item-label">Tanggal Selesai</div>
+                    <div class="profile-widget-item-value">{{ $peminjam->tgl_selesai }}</div>
                   </div>
                 </div>
               </div>

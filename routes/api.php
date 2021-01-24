@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\BookingController;
-use App\Http\Controllers\API\CategoryController;
+use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\RoomController;
 use App\Http\Controllers\User\UserController;
